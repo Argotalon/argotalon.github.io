@@ -14,13 +14,13 @@ html {
   margin: 5px 0;
 }
 button:hover{
-  background-color: crimson;
+  background-color: #666666;
 }
 #displayMain{
   background: white;
   width: 184px;
   height: 100px;
-  border: solid 3px red;
+  border: solid 3px crimson;
   margin: 5px;
 }
 #displaySub{
