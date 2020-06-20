@@ -7,7 +7,7 @@ function calculate() {
     rate,
     period,
     payment,
-    i = 0,
+    i = 1,
     inPayRaw,
     inPayDisplay,
     prPayRaw,
@@ -28,7 +28,7 @@ function calculate() {
 
   document.getElementById('payment').innerHTML = payment;
 
-  while (principalRaw > 0 && i < period) {
+  while (principalRaw > 0 && i <= period) {
     inPayRaw = rate * principalRaw;
     inPayDisplay = inPayRaw.toFixed(2);
     prPayRaw = p - inPayRaw;
