@@ -90,7 +90,7 @@ button:hover{
 .schedule{
   border: solid 2px black;
   height: auto;
-  width: 60%;
+  width: 780px;
   background: #CCC;
   color: black;
   padding: 4px 10px;
@@ -99,7 +99,7 @@ button:hover{
 .info{
   border: solid 2px black;
   height: auto;
-  width: 25%;
+  width: 350px;
   background: #CCC;
   color: black;
   padding: 4px 10px;
