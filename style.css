@@ -71,17 +71,17 @@ button:hover{
 }
 #monthly{
   margin: 45px 0 0 0;
+  height: 17px;
+  background: #CCC;
+  width: 200px;
+  padding: 1px 2px;
+  border: 1px solid;
+}
+#paymentWords{
+  margin: 0;
 }
 #submit{
   background: #888;
-}
-#payment{
-  height: 15px;
-  background: #CCC;
-  width: 169px;
-  padding: 1px 2px;
-  border: 2px solid;
-  margin: 0;
 }
 #schedule, #meh{
   width: 100%;
