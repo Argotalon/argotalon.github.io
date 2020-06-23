@@ -7,13 +7,13 @@ function calculate() {
     rate,
     period,
     payment,
-    i = 1,
-    inPayRaw,
+    i = 0,
+    inPayRaw = [],
     inPayDisplay,
-    prPayRaw,
+    prPayRaw = [],
     prPayDisplay,
-    totalInt = 0,
-    totalPr = 0,
+    totalInt,
+    totalPr,
     totalPaid;
   document.getElementById('schedule').innerHTML = ""
   document.getElementById('intPaid').innerHTML = ""
@@ -28,18 +28,18 @@ function calculate() {
 
   document.getElementById('payment').innerHTML = payment;
 
-  while (principalRaw > 0 && i <= period) {
-    inPayRaw = rate * principalRaw;
-    inPayDisplay = inPayRaw.toFixed(2);
-    prPayRaw = p - inPayRaw;
-    prPayDisplay = prPayRaw.toFixed(2);
-    principalRaw = principalRaw - prPayRaw;
+  while (principalRaw > 0 && i < period) {
+    inPayRaw[i] = rate * principalRaw;
+    inPayDisplay = inPayRaw[i].toFixed(2);
+    prPayRaw[i] = p - inPayRaw[i];
+    prPayDisplay = prPayRaw[i].toFixed(2);
+    principalRaw = principalRaw - prPayRaw[i];
     principalDisplay = principalRaw.toFixed(2);
-    document.getElementById('schedule').innerHTML += "<p class='schedule'>" + "Month " + i + ": Interest Payment: " + inPayDisplay + " Principal Payment: "+ prPayDisplay + " Prinicipal Balance: " + principalDisplay + '</p>' ;
-    totalInt += inPayRaw;
-    totalPr += prPayRaw;
+    totalInt = eval(inPayRaw.join('+'));
+    totalPr = eval(prPayRaw.join('+'));
     console.log(totalInt);
     i++;
+    document.getElementById('schedule').innerHTML += "<p class='schedule'>" + "Month " + i + ": Interest Payment: " + inPayDisplay + " Principal Payment: "+ prPayDisplay + " Prinicipal Balance: " + principalDisplay + '</p>' ;
     if (i == period) {
       document.getElementById('intPaid').innerHTML += totalInt.toFixed(2);
       totalPaid = totalPr + totalInt;
