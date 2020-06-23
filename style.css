@@ -1,5 +1,24 @@
-html {
+html{
   background: #333;
+}
+#navigation{
+  display: inline-block;
+  background: #A00;
+  height: 30px;
+  width: 100%;
+  margin: 0;
+  padding: 10px 0 0 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 2px solid;
+  border-radius: 2px 2px 2px 2px;
+}
+.navigation{
+  color: #000;
+}
+a:hover{
+  color: #444;
 }
 #input button{
   background: #888;
@@ -12,6 +31,7 @@ html {
 }
 #input p{
   margin: 5px 0;
+  width: 100%;
 }
 button:hover{
   background-color: #666;
@@ -45,5 +65,43 @@ button:hover{
 #calculator{
   border: solid 2px;
   width: 200px;
-  height: ;
+  height: auto;
+  position: absolute;
+  top: 60px;
+}
+#monthly{
+  margin: 45px 0 0 0;
+}
+#paymentWords{
+  margin: 0;
+  height: 17px;
+  background: #CCC;
+  width: 200px;
+  padding: 1px 2px;
+  border: 1px solid;
+}
+#submit{
+  background: #888;
+}
+#schedule, #meh{
+  width: 100%;
+  position: relative;
+}
+.schedule{
+  border: solid 2px black;
+  height: auto;
+  width: 756px;
+  background: #CCC;
+  color: black;
+  padding: 4px 10px;
+  margin: 0;
+}
+.info{
+  border: solid 2px black;
+  height: auto;
+  width: 326px;
+  background: #CCC;
+  color: black;
+  padding: 4px 10px;
+  margin: 4px 0 10px 0;
 }
