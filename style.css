@@ -74,9 +74,9 @@ button:hover{
 }
 #paymentWords{
   margin: 0;
-  height: 17px;
+  height: 20px;
   background: #CCC;
-  width: 300px;
+  width: 350px;
   padding: 1px 2px;
   border: 1px solid;
 }
