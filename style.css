@@ -76,7 +76,7 @@ button:hover{
   margin: 0;
   height: 17px;
   background: #CCC;
-  width: 200px;
+  width: auto;
   padding: 1px 2px;
   border: 1px solid;
 }
@@ -99,7 +99,7 @@ button:hover{
 .info{
   border: solid 2px black;
   height: auto;
-  width: 326px;
+  width: auto;
   background: #CCC;
   color: black;
   padding: 4px 10px;
