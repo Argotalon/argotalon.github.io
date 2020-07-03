@@ -1,5 +1,21 @@
 html{
-  background: #333;
+  background: #222;
+}
+table, h1{
+  color: #DDD;
+  margin: 0;
+  border-spacing: 0px;
+  width: 100%;
+}
+caption, h1{
+  width: 100%;
+  text-align: center;
+}
+td, th{
+  border: 1px solid #CCC;
+}
+caption, td{
+  text-align: center;
 }
 #navigation{
   display: inline-block;
@@ -16,6 +32,9 @@ html{
 }
 .navigation{
   color: #000;
+}
+.tHeader{
+  border: none;
 }
 a:hover{
   color: #444;
