@@ -6,6 +6,7 @@ function calculate() {
     discount,
     rate,
     period,
+    periodyr,
     payment,
     i = 0,
     inPayRaw = [],
@@ -21,7 +22,13 @@ function calculate() {
 
   principalRaw = document.getElementById('principal').value;
   rate = (document.getElementById('rate').value / 100) / 12;
-  period = document.getElementById('number').value * 12;
+  periodyr = document.getElementById('number').value;
+  period = periodyr * 12;
+  
+  if (periodyr > 30 || periodyr <= 0) {
+    alert("Period must be greater than 0 but no higher than 30")
+  }
+  
   discount = (((1 + rate) ** period) - 1) / (rate * (1 + rate) ** period);
   var p = principalRaw / discount;
   payment = p.toFixed(2);
@@ -39,7 +46,7 @@ function calculate() {
     totalPr = eval(prPayRaw.join('+'));
     console.log(totalInt);
 
-    if(i % 12 == 0){
+    if (i % 12 == 0){
       document.getElementById('schedule').innerHTML += "<tr><td colspan='4' class='tHeader'><h2>Year " + (i/12+1) +"</h2></td></tr>";
       document.getElementById('schedule').innerHTML += "<tr><th>Month</th><th>Interest Payment</th><th>Prinicipal Payment</th><th>Prinicipal Balance</th></tr>"
     }
