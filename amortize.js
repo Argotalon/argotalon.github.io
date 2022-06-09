@@ -26,8 +26,7 @@ function calculate() {
   period = periodyr * 12;
   
   if (periodyr > 30 || periodyr <= 0) {
-    alert("Period must be greater than 0 but no higher than 30");
-    break;
+    throw new Error("Period must be greater than 0 but no higher than 30");
   }
   
   discount = (((1 + rate) ** period) - 1) / (rate * (1 + rate) ** period);
