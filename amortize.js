@@ -28,7 +28,7 @@ function calculate() {
   if (periodyr > 30 || periodyr <= 0) {
     throw new Error("Period must be greater than 0 but no higher than 30");
   }
-  Else {  
+  else {  
     discount = (((1 + rate) ** period) - 1) / (rate * (1 + rate) ** period);
     var p = principalRaw / discount;
     payment = p.toFixed(2);
