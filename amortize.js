@@ -1,4 +1,7 @@
-
+const numFormat = {
+  style: "currency",
+  currency: "USD"
+}
 
 function calculate() {
   var principalRaw,
@@ -38,16 +41,16 @@ function calculate() {
 
     while (principalRaw > 0 && i < period) {
       inPayRaw[i] = rate * principalRaw;
-      inPayDisplay = inPayRaw[i].toFixed(2).toLocaleString("en-US", {style:"currency", currency:"USD"});
+      inPayDisplay = inPayRaw[i].toLocaleString("en-US", numFormat);
       prPayRaw[i] = p - inPayRaw[i];
-      prPayDisplay = prPayRaw[i].toFixed(2).toLocaleString("en-US", {style:"currency", currency:"USD"});
+      prPayDisplay = prPayRaw[i].toLocaleString("en-US", numFormat);
       principalRaw = principalRaw - prPayRaw[i];
       if (principalRaw < 0) {
         principalRaw = principalRaw * -1
       }
-      principalDisplay = principalRaw.toFixed(2).toLocaleString("en-US", {style:"currency", currency:"USD"});
-      totalInt = eval(inPayRaw.join('+')).toLocaleString("en-US", {style:"currency", currency:"USD"});
-      totalPr = eval(prPayRaw.join('+')).toLocaleString("en-US", {style:"currency", currency:"USD"});
+      principalDisplay = principalRaw.toLocaleString("en-US", numFormat);
+      totalInt = eval(inPayRaw.join('+'));
+      totalPr = eval(prPayRaw.join('+'));
       console.log(totalInt);
 
       if (i % 12 == 0){
@@ -60,9 +63,9 @@ function calculate() {
       document.getElementById('schedule').innerHTML += "<tr><td>Month: " + i + "</td><td>" + inPayDisplay + "</td><td>" + prPayDisplay + "</td><td>" + principalDisplay + "</td></tr>";
       /*"<p class='schedule'>" + "Month " + i + ": Interest Payment: " + inPayDisplay + " Principal Payment: "+ prPayDisplay + " Principal Balance: " + principalDisplay + '</p>';*/
       if (i == period) {
-        document.getElementById('intPaid').innerHTML = totalInt.toFixed(2);
+        document.getElementById('intPaid').innerHTML = totalInt.toLocaleString("en-US", numFormat);
         totalPaid = totalPr + totalInt;
-        document.getElementById('totalPaid').innerHTML = totalPaid.toFixed(2);
+        document.getElementById('totalPaid').innerHTML = totalPaid.toLocaleString("en-US", numFormat);
       }
     }
   }
