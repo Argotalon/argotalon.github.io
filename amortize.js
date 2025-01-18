@@ -38,16 +38,16 @@ function calculate() {
 
     while (principalRaw > 0 && i < period) {
       inPayRaw[i] = rate * principalRaw;
-      inPayDisplay = inPayRaw[i].toFixed(2);
+      inPayDisplay = inPayRaw[i].toFixed(2).toLocaleString("en-US", {style:"currency", currency:"USD"});
       prPayRaw[i] = p - inPayRaw[i];
-      prPayDisplay = prPayRaw[i].toFixed(2);
+      prPayDisplay = prPayRaw[i].toFixed(2).toLocaleString("en-US", {style:"currency", currency:"USD"});
       principalRaw = principalRaw - prPayRaw[i];
       if (principalRaw < 0) {
         principalRaw = principalRaw * -1
       }
-      principalDisplay = principalRaw.toFixed(2);
-      totalInt = eval(inPayRaw.join('+'));
-      totalPr = eval(prPayRaw.join('+'));
+      principalDisplay = principalRaw.toFixed(2).toLocaleString("en-US", {style:"currency", currency:"USD"});
+      totalInt = eval(inPayRaw.join('+')).toLocaleString("en-US", {style:"currency", currency:"USD"});
+      totalPr = eval(prPayRaw.join('+')).toLocaleString("en-US", {style:"currency", currency:"USD"});
       console.log(totalInt);
 
       if (i % 12 == 0){
