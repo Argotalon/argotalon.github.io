@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html class="bg-gray-100">
+    <head>
+        <meta charset="UTF-8" />
+        <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+        <meta
+        http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'"
+        />
+        <meta
+        http-equiv="X-Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'"
+        />
+        <link href="output.css" rel="stylesheet">
+        <title>Loan Amortizer</title>
+    </head>
+    <body class="w-full">
+        <div id="header" class="bg-blue-800 border border-gray-300 rounded-b-2xl w-full ml-0.5 mr-0.5 place-self-center">
+            <h1 class="text-white text-xl font-bold place-self-center">Loan Amortization Calculator</h1>
+        </div>
+        <div id="main" class="grid grid-cols-3 gap-2 w-full">
+            <div id="amortize-info" class="grid grid-cols-12 grid-flow-col border gap-1 border-gray-400 bg-gray-200 rounded-2xl m-0.5 p-1.5">
+                <input class="bg-sky-100 placeholder-gray-700 p-1 col-start-1 col-span-12 border border-blue-800 rounded-lg" type="number" id="principal" placeholder="Loan Amount" min="1" required><br>
+                <input class="bg-sky-100 placeholder-gray-700 p-1 col-start-1 col-span-12 border border-blue-800 rounded-lg" type="number" id="rate" placeholder="Interest Rate" min="1" required><br>
+                <input class="bg-sky-100 placeholder-gray-700 p-1 col-start-1 col-span-12 border border-blue-800 rounded-lg" type="number" id="years" placeholder="No. of Years" min="1" max="30" required><br>
+                <input type="submit" id="submit" value="Submit" class="col-start-1 col-span-6 rounded-md h-8 bg-blue-800 text-white hover:bg-blue-600">
+                <input type="reset" id="reset" value="Reset" class="col-start-8 col-span-5 rounded-md h-8 bg-blue-800 text-white hover:bg-blue-600">
+            </div>
+            <div id="qualification" class="grid grid-cols-12 grid-flow-col gap-1 border border-gray-400 bg-gray-200 rounded-2xl m-0.5 p-1.5">
+                <input class="bg-sky-100 placeholder-gray-700 p-1 col-start-1 col-span-12  border border-blue-800 rounded-lg" type="number" id="income" placeholder="Monthly Income" min="0" required><br>
+                <input class="bg-sky-100 placeholder-gray-700 p-1 col-start-1 col-span-12  border border-blue-800 rounded-lg" type="number" id="expenses" placeholder="Monthly Payments" min="0"><br>
+                <input class="bg-sky-100 placeholder-gray-700 p-1 col-start-1 col-span-12 border border-blue-800 rounded-lg" type="number" id="dsrThreshold" placeholder="DSR Threshold" min="0" required><br>
+                <input type="submit" id="calcDSR" value="Get DSR" class="col-start-1 col-span-6 rounded-md h-8 bg-blue-800 text-white hover:bg-blue-600">
+                <span class="relative bg-gray-50 data-[valid=N]:text-red-500 data-[valid=Y]:text-gray-800 p-1 col-start-7 col-span-6  border data-[valid=N]:border-red-500 data-[valid=Y]:border-gray-600  rounded-lg" id="dsrSpan" data-valid="Y">DSR:<span class="absolute right-1 justify-self-end text-right w-full" id="dsr"></span></span>            </div>
+            <div id="results" class="grid grid-cols-12 grid-flow-col gap-1 border border-gray-400 bg-gray-200 rounded-2xl m-0.5 p-1.5">
+                <span class="relative bg-gray-50 text-gray-800 p-1 col-start-1 col-span-12 border border-gray-600 rounded-lg">Monthly Payment: <span class="absolute right-1 justify-self-end text-right w-full" id="payment"></span></span><br>
+                <span class="relative bg-gray-50 text-gray-800 p-1 col-start-1 col-span-12 border border-gray-600 rounded-lg">Total Repaid:    <span class="absolute right-1 justify-self-end text-right w-full" id="totalPaid"></span></span><br>
+                <span class="relative bg-gray-50 text-gray-800 p-1 col-start-1 col-span-12 border border-gray-600 rounded-lg">Interest Paid:   <span class="absolute right-1 justify-self-end text-right w-full" id="intPaid"></span></span>
+                <span class="relative bg-gray-50 data-[valid=N]:text-red-500 data-[valid=Y]:text-gray-800 p-1 col-start-1 col-span-12 border data-[valid=N]:border-red-500 data-[valid=Y]:border-gray-600 rounded-lg" id="newDsrSpan" data-valid="Y">New DSR:         <span class="absolute right-1 justify-self-end text-right w-full" id="newDsr"></span></span>
+            </div>
+        </div>
+        <div class="w-full place-self-center">
+            <p class="bg-blue-800 rounded-lg mr-0.5 ml-0.5 text-lg font-bold text-white border-blue-800 text-center">Amortization Schedule</p>
+            <table id="schedule" class="table-auto rounded-lg w-full border-collapse place-self-center m-1">
+            </table>
+        </div>
+        <script src="renderer.js"></script>
+    </body>
+</html>
