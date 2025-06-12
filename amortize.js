@@ -6,25 +6,45 @@ const numFormat = {
 document.getElementById("submit").addEventListener("click",calculate);
 document.getElementById("reset").addEventListener("click",clearFields);
 document.getElementById("calcDSR").addEventListener("click",calcDSR);
+document.getElementById("incomePopOut").addEventListener("click",expandIncome);
+document.getElementById("expensesPopOut").addEventListener("click",expandExpenses);
+
+function expandIncome() {
+    window.open('https://github.com', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')
+}
+
+function expandExpenses() {
+    window.open('https://github.com', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')
+}
 
 function calcDSR(payment = 0) {
     const 
         income = Number(document.getElementById('income').value),
         expenses = Number(document.getElementById('expenses').value),
-        dsrThreshold = Number(document.getElementById('dsrThreshold').value) / 100,
+        dsrThreshold = document.getElementById('dsrThreshold')
         dsr = document.getElementById('dsr'),
         newDsr = document.getElementById('newDsr'),
-        dsrContainer = document.querySelector("#dsrSpan"),
-        newDsrContainer = document.querySelector("#newDsrSpan");
+        dsrContainer = document.getElementById("dsrSpan"),
+        newDsrContainer = document.getElementById("newDsrSpan");
+    
+    let 
+        dsrThresholdVal = Number(dsrThreshold.value) / 100,
+        dsrVal,
+        newDsrVal;    
+    
+    dsrContainer.dataset.valid = "Y"
+    newDsrContainer.dataset.valid = "Y"
 
-    dsr.innerHTML = (expenses / income).toLocaleString("en-US",{style:"percent"});
+    dsrVal = expenses / income
+    dsr.innerHTML = dsrVal.toLocaleString("en-US",{style:"percent"});
     if (payment > 0) {
-        newDsr.innerHTML = ((expenses + payment) / income).toLocaleString("en-US",{style:"percent"});
+        newDsrVal = (expenses + payment) / income
+        newDsr.innerHTML = newDsrVal.toLocaleString("en-US",{style:"percent"});
     }
-    if (dsr.value > dsrThreshold) {
+    if (dsrVal > dsrThresholdVal && dsrThresholdVal > 0) {
         dsrContainer.dataset.valid = "N";
     }
-        if (newDsr.value > dsrThreshold) {
+    if (newDsrVal > dsrThresholdVal && dsrThresholdVal > 0) {
         newDsrContainer.dataset.valid = "N";
     }
 }
@@ -37,6 +57,10 @@ function clearFields() {
     document.getElementById('principal').value = ""
     document.getElementById('rate').value = ""
     document.getElementById('years').value = ""
+    document.getElementById('months').value = ""
+    document.getElementById('income').value = ""
+    document.getElementById('expenses').value = ""
+    document.getElementById('dsrThreshold').value = ""
 }
 
 function calculate() {
@@ -45,7 +69,8 @@ function calculate() {
         discount,
         rate,
         period,
-        periodyr,
+        periodYrs,
+        periodMths,
         payment,
         i = 0,
         inPayRaw = [],
@@ -61,11 +86,12 @@ function calculate() {
 
     principalRaw = document.getElementById('principal').value;
     rate = (document.getElementById('rate').value / 100) / 12;
-    periodyr = document.getElementById('years').value;
-    period = periodyr * 12;
+    periodYrs = document.getElementById('years').value;
+    periodMths = document.getElementById('months').value
+    period = (periodYrs * 12) + Number(periodMths);
     
-    if (periodyr > 30 || periodyr <= 0) {
-        console.log("Period must be greater than 0 but no higher than 30");
+    if (period / 12 > 30 || period <= 0) {
+        console.log("Tern must be greater than 0 but no higher than 30 years.");
         return;
     }
     discount = (((1 + rate) ** period) - 1) / (rate * (1 + rate) ** period);
