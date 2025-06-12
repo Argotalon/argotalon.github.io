@@ -238,11 +238,11 @@
   .grid-flow-col {
     grid-auto-flow: column;
   }
-  .grid-cols-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
   .grid-cols-12 {
     grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+  .grid-rows-3 {
+    grid-template-rows: repeat(3, minmax(0, 1fr));
   }
   .gap-1 {
     gap: calc(var(--spacing) * 1);
@@ -393,6 +393,11 @@
   .data-\[valid\=Y\]\:text-gray-800 {
     &[data-valid="Y"] {
       color: var(--color-gray-800);
+    }
+  }
+  .md\:grid-cols-3 {
+    @media (width >= 48rem) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 }
